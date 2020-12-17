@@ -1,0 +1,209 @@
+$bg: #223;
+$color: #eef;
+$border: #616178;
+
+$card-width: 600px;
+$card-height: 400px;
+$card-btn-col-w: 64px;
+$card-input-col-w: ($card-width - $card-btn-col-w) / 3;
+
+$row-height: 32px;
+
+@mixin bd-l($c) 
+{  
+    border: 
+    {
+        left:  1px solid $c;       
+    }
+}
+
+@mixin bd-r($c) 
+{   
+    border: 
+    {
+        right: 1px solid $c;        
+    }
+}
+
+* {
+
+    margin:  0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.toolbar 
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 32px);
+    justify-content: start;
+}
+
+main
+{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+}
+
+.hbox 
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
+    justify-items: start;
+}
+
+.title-tool-hbox 
+{
+    display: grid;
+    grid-template-columns: auto 32px;
+    justify-items: start;
+}
+
+.title-tool-tool-hbox 
+{
+    display: grid;
+    grid-template-columns: auto 32px 32px;
+    justify-items: start;
+}
+
+$tree-bg: #181828;
+$tree-color: #ccd;
+$tree-border: #668;
+
+#treeview-container
+{
+    min-width: 200px;
+    max-width: 600px;
+    height: 100vh;
+    border: 1px solid $tree-border;
+    background-color: $tree-bg;
+    color: $tree-color;
+}
+
+$disabled-editor-bg: #ddd;
+$disabled-editor-color: #668;
+$disabled-editor-border: #aab;
+
+#treeview-container 
+{
+    #tree-title
+    {
+        height: $row-height;
+    }
+
+    ul
+    {
+        height: 100%;
+        li.tree-item
+        {
+            height: $row-height;
+        };
+    }
+
+}
+
+#editor-container
+{
+    width: 1fr;
+    height: 1fr;
+    border: 1px solid $border;
+    background-color: $bg;
+    color: $color;
+    justify-content: center;
+}
+
+
+$card-bg: #980060;
+$card-border: #ff0098;
+$card-color: #ffffe8;
+
+$card-title-bg: #600038;
+
+$card-row-height: 32px;
+
+.table-card
+{
+    width: $card-width;
+    height: $card-height;
+    border: 1px solid $card-border;
+    background-color: $card-bg;
+    color: $card-color;
+    justify-content: center;
+
+    .title
+    {
+        padding: auto;
+        height: $card-row-height;
+        background-color: $card-title-bg;
+        justify-content: center;
+    }
+
+    .row
+    {
+        height: $card-row-height;
+        border:
+        {
+            bottom: 2px solid $card-border;
+        }
+    }
+
+    table
+    {
+        th, td
+        {
+            width: $card-input-col-w;
+        }
+
+        th:not(:last-of-type), td:not(:last-of-type)
+        {
+            @include bd-r($card-border);
+        }
+
+        th.btn-col, td.btn-col
+        {
+            width: $card-btn-col-w;
+        }
+
+    }
+}
+
+$tool-item-bg: #181822;
+$tool-item-color: #989898;
+$tool-item-border: #446;
+
+$tool-item-bg-dis: #282842;
+$tool-item-color-dis: #383842;
+
+.title
+{
+   width: 150px;
+}
+
+
+
+.tool-item 
+{
+    @include bd-l($tool-item-border);
+    background-color: $tool-item-bg;
+    color: $tool-item-color;
+
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    &:hover
+    {
+        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.33);
+    }
+
+    &.disabled
+    {
+        color: $tool-item-color-dis;
+    }
+}
+
+.tool-item:last-child
+{
+    @include bd-r($tool-item-border);
+}

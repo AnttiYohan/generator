@@ -1,0 +1,5 @@
+if ($this->conn)
+{
+    $this->conn->close();
+    $this->conn = NULL;
+}

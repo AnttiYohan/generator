@@ -1,0 +1,5 @@
+return
+[
+    "msg" => "error",
+    "log" => $e . PHP_EOL . "at file: " . $f . ", line: " . $l
+];

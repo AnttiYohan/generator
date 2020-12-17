@@ -1,0 +1,586 @@
+PUT http://apigen.local/schema/jojo/weather/v2/
+Content-Type: application/json
+
+{
+    "_name": "prototyper",
+    "_table":
+    {
+        "_action": "add",
+        "_name": "Animals",
+        "_fieldList":
+        [
+            
+        ],
+        "_constraintList":
+        [
+            {
+                "_action": "add",
+                "_type": "PRIMARY KEY",
+                "_targetTable": "Users",
+                "_targetField": "project_id",
+                "_fieldList":
+                [
+                    "project_id"
+                ]
+            },
+            {
+                "_type": "FOREIGN KEY",
+                "_targetTable": "Projects",
+                "_targetField": "author_id",
+                "_referenceTable": "Users",
+                "_referenceField": "user_id",
+                "_onUpdate": "CASCADE",
+                "_onDelete": "CASCADE"                    
+            }
+        ]
+    },
+    "_table":
+    {
+        "_action": "rename",
+        "_name": "Users",
+        "_name_new": "Persons"
+    },
+    "_table":
+    {
+        "_action": "remove",
+        "_name": "Animals"
+    },
+    "_table":
+    {
+        "_name": "Users",
+        "_fieldList":
+        [
+            {
+                "_action": "add",
+                "_key": "lastname",
+                "_type": "VARCHAR",
+                "_size": 256,
+                "_parent": "Users",
+                "_constraintList":
+                [
+                    {
+                        "_type": "NOT NULL",
+                        "_targetTable": "Users",
+                        "_targetField": "lastname"
+                    }
+                ]
+            },
+            {
+                "_action": "modify",
+                "_key_old": "latname",
+                "_key_new": "lastname",
+                "_type": "VARCHAR",
+                "_size": 256,
+                "_parent": "Users",
+                "_constraintList":
+                [
+                    {
+                        "_type": "NOT NULL",
+                        "_targetTable": "Users",
+                        "_targetField": "lastname"
+                    }
+                ]
+            },
+            {
+                "_action": "modify",
+                "_key_old": "lastname",
+                "_key_new": "lastname",
+                "_type": "VARCHAR",
+                "_size": 256,
+                "_parent": "Users",
+                "_constraintList":
+                [
+
+                ]
+            },            
+            {
+                "_action": "remove",
+                "_key": "lastname"
+            }  
+        ]
+    },
+    "_table":
+    {
+        "_name": "Users",
+        "_fieldList":
+        [
+            {
+                "_action": "add",
+                "_key": "lastname",
+                "_type": "VARCHAR",
+                "_size": 256,
+                "_parent": "Users",
+                "_constraintList":
+                [
+                    {
+                        "_type": "NOT NULL",
+                        "_targetTable": "Users",
+                        "_targetField": "lastname"
+                    }
+                ]
+            },
+            {
+                "_action": "add",
+                "_key": "firstname", 
+                "_type": "VARCHAR",
+                "_size": 256,
+                "_parent": "Users",
+                "_constraintList":
+                [
+                    {
+                        "_type": "NOT NULL",
+                        "_targetTable": "Users",
+                        "_targetField": "lastname"
+                    }
+                ]
+            },
+            {
+                "_action": "add",
+                "_key": "ssn"
+                "_type": "VARCHAR",
+                "_size": 256,
+                "_parent": "Users",
+                "_constraintList":
+                [
+                    {
+                        "_type": "NOT NULL"
+                    }
+                ]
+            }                       
+        ],
+        "_constraintList":
+        [
+            {
+                "_action": "add",
+                "_type": "PRIMARY KEY",
+                "_targetTable": "Users",
+                "_targetField": "ssn",
+                "_fieldList":
+                [
+                    "ssn",
+                    "lastname"
+                ]
+            },
+            {
+                "_action": "add",
+                "_type": "FOREIGN KEY",
+                "_targetTable": "Projects",
+                "_targetField": "author_id",
+                "_referenceTable": "Users",
+                "_referenceField": "user_id",
+                "_onUpdate": "CASCADE",
+                "_onDelete": "CASCADE"                    
+            }
+        ]
+    },
+    "_tableList":
+    [
+        {
+            "_name": "Users",
+            "_fieldList":
+            [
+                {
+                    "_key":  "user_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "AUTO_INCREMENT",
+                            "_targetTable": "Users",
+                            "_targetField": "user_id",
+                            "_step": 1
+                        }
+                    ]
+                },
+                {
+                    "_key":  "username",
+                    "_type": "VARCHAR",
+                    "_size": 256,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Users",
+                            "_targetField": "username"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "email",
+                    "_type": "VARCHAR",
+                    "_size": 256,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Users",
+                            "_targetField": "email"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "password",
+                    "_type": "VARCHAR",
+                    "_size": 256,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Users",
+                            "_targetField": "password"
+                        }
+                    ]
+                }             
+            ],
+            "_constraintList":
+            [
+                {
+                    "_type": "PRIMARY KEY",
+                    "_targetTable": "Users",
+                    "_targetField": "user_id",
+                    "_fieldList":
+                    [
+                        "user_id"
+                    ]
+                }
+            ]
+        },
+        {
+            "_name": "Projects",
+            "_fieldList":
+            [
+                {
+                    "_key":  "project_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Projects",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "AUTO_INCREMENT",
+                            "_targetTable": "Projects",
+                            "_targetField": "project_id",
+                            "_step": 1
+                        }
+                    ]
+                },
+                {
+                    "_key":  "name",
+                    "_type": "VARCHAR",
+                    "_size": 1024,
+                    "_parent": "Projects",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Projects",
+                            "_targetField": "name"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "created",
+                    "_type": "DATETIME",
+                    "_size": 0,
+                    "_parent": "Projects",
+                    "_constraintList": []
+                },
+                {
+                    "_key":  "modified",
+                    "_type": "DATETIME",
+                    "_size": 0,
+                    "_parent": "Projects",
+                    "_constraintList": []
+                },
+                {
+                    "_key":  "author_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Projects",
+                    "_constraintList": 
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Projects",
+                            "_targetField": "author_id"
+                        }
+                    ]
+                }
+            ],
+            "_constraintList":
+            [
+                {
+                    "_type": "PRIMARY KEY",
+                    "_targetTable": "Projects",
+                    "_targetField": "project_id",
+                    "_fieldList":
+                    [
+                        "project_id"
+                    ]
+                },
+                {
+                    "_type": "FOREIGN KEY",
+                    "_targetTable": "Projects",
+                    "_targetField": "author_id",
+                    "_referenceTable": "Users",
+                    "_referenceField": "user_id",
+                    "_onUpdate": "CASCADE",
+                    "_onDelete": "CASCADE"                    
+                }
+            ]
+        },
+        {
+            "_name": "Dirs",
+            "_fieldList":
+            [
+                {
+                    "_key":  "dir_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Dirs",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "AUTO_INCREMENT",
+                            "_targetTable": "Dirs",
+                            "_targetField": "dir_id",
+                            "_step": 1
+                        }
+                    ]
+                },
+                {
+                    "_key":  "name",
+                    "_type": "VARCHAR",
+                    "_size": 1024,
+                    "_parent": "Dirs",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Dirs",
+                            "_targetField": "name"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "parent_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Dirs",
+                    "_constraintList": 
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Dirs",
+                            "_targetField": "parent_id"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "project_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Dirs",
+                    "_constraintList": 
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Dirs",
+                            "_targetField": "project_id"
+                        }
+                    ]
+                }
+            ],
+            "_constraintList":
+            [
+                {
+                    "_type": "PRIMARY KEY",
+                    "_targetTable": "Dirs",
+                    "_targetField": "dir_id",
+                    "_fieldList":
+                    [
+                        "dir_id"
+                    ]
+                },
+                {
+                    "_type": "FOREIGN KEY",
+                    "_targetTable": "Dirs",
+                    "_targetField": "project_id",
+                    "_referenceTable": "Projects",
+                    "_referenceField": "project_id",
+                    "_onUpdate": "CASCADE",
+                    "_onDelete": "CASCADE"             
+                }
+            ]
+        },
+        {
+            "_name": "Files",
+            "_fieldList":
+            [
+                {
+                    "_key":  "file_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Files",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "AUTO_INCREMENT",
+                            "_targetTable": "Files",
+                            "_targetField": "file_id",
+                            "_step": 1
+                        }
+                    ]
+                },
+                {
+                    "_key":  "name",
+                    "_type": "VARCHAR",
+                    "_size": 1024,
+                    "_parent": "Files",
+                    "_constraintList":
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Files",
+                            "_targetField": "name"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "created",
+                    "_type": "DATETIME",
+                    "_size": 0,
+                    "_parent": "Files",
+                    "_constraintList": []
+                },
+                {
+                    "_key":  "modified",
+                    "_type": "DATETIME",
+                    "_size": 0,
+                    "_parent": "Files",
+                    "_constraintList": []
+                },
+                {
+                    "_key":  "dir_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_parent": "Files",
+                    "_constraintList": 
+                    [
+                        {
+                            "_type": "NOT NULL",
+                            "_targetTable": "Files",
+                            "_targetField": "dir_id"
+                        }
+                    ]
+                },
+                {
+                    "_key":  "content",
+                    "_type": "MEDIUMTEXT",
+                    "_size": 0,
+                    "_parent": "Files",
+                    "_constraintList": []
+                }
+            ],
+            "_constraintList":
+            [
+                {
+                    "_type": "PRIMARY KEY",
+                    "_targetTable": "Files",
+                    "_targetField": "file_id",
+                    "_fieldList":
+                    [
+                        "file_id"
+                    ]
+                },
+                {
+                    "_type": "FOREIGN KEY",
+                    "_targetTable": "Files",
+                    "_targetField": "dir_id",
+                    "_referenceTable": "Dirs",
+                    "_referenceField": "dir_id",
+                    "_onUpdate": "CASCADE",
+                    "_onDelete": "CASCADE"                    
+                }
+            ]
+        }
+    ],
+    "_modelList":
+    [
+        {
+            "name":     "user",
+            "table":    "Users",
+            "group-by": "username",
+            "result":   "user_id",
+            "display":
+            [
+                {
+                    "field": "user_id"
+                },
+                {
+                    "field": "username"
+                },
+                {
+                    "field": "email"
+                }
+            ]
+        },
+        {
+            "name":     "project",
+            "table":    "Users",
+            "group-by": "username",
+            "display":
+            [
+               {
+                   "field": "username"
+               }
+            ],
+            "result": "user_id",
+            "children":
+            [
+                {
+                    "result-alias": "author_id",
+                    "table":    "Projects",
+                    "group-by": "author_id",
+                    "display":
+                    [
+                        {
+                            "field": "name"
+                        }
+                    ],
+                    "result":   "project_id",
+                    "children":
+                    [
+                        {
+                            "table":     "Dirs",
+                            "group-by":  "project_id",
+                            "result":    "dir_id",
+                            "children":
+                            [
+                                {
+                                    "table":    "Files",
+                                    "group-by": "dir_id",
+                                    "result": "",
+                                    "display":
+                                    [
+                                        {
+                                            "field": "name"
+                                        },
+                                        {
+                                            "field": "content"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

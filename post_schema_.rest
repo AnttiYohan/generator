@@ -1,0 +1,85 @@
+POST https://apigen.local/schema/guest/testingAPI2/v1
+Content-Type: application/json
+
+{
+    "_rewrite": true,
+    "_name":    "testingAPI4",
+    "_tableList":
+    [
+        {
+            "_name": "Users",
+            "_fieldList":
+            [
+                {
+                    "_key":  "user_id",
+                    "_type": "INTEGER",
+                    "_size": 0,
+                    "_notnull": true,
+                    "_defaultValue": "",
+                    "_autoinc": 1,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                    ]
+                },
+                {
+                    "_key":  "username",
+                    "_type": "VARCHAR",
+                    "_size": 256,
+                    "_notnull": true,
+                    "_defaultValue": "",
+                    "_autoinc": 0,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                    ]
+                },
+                {
+                    "_key":  "email",
+                    "_type": "VARCHAR",
+                    "_size": 256,
+                    "_notnull": true,
+                    "_defaultValue": "",
+                    "_autoinc": 0,
+                    "_parent": "Users",
+                    "_constraintList":
+                    [
+                    ]
+                }         
+            ],
+            "_constraintList":
+            [
+                {
+                    "_type": "PRIMARY KEY",
+                    "_targetTable": "Users",
+                    "_targetField": "user_id",
+                    "_fieldList":
+                    [
+                        "user_id"
+                    ]
+                }
+            ]
+        }
+    ],
+    "_modelList":
+    [
+        {
+            "name":     "user",
+            "table":    "Users",
+            "group-by": "username",
+            "result":   "user_id",
+            "display":
+            [
+                {
+                    "field": "user_id"
+                },
+                {
+                    "field": "username"
+                },
+                {
+                    "field": "email"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "model" : 
+    [
+        {
+            "name"   : "UserModel",
+            "method" :
+            [
+                {
+                    "name"  : "read",
+                    "stmt"  : "select * from User where id=:id",
+                },
+                {
+                    "name"  : "read_all",
+                    "stmt"  : "select * from User",
+                }                
+            ]
+        },
+        {
+            "name"   : "ProjectModel",
+            "method" :
+            [
+                {
+                    "verb"  : "POST",
+                    "name"  : "create"
+                    "stmt"  : "insert into Project values where userid=:userid",
+                },   
+                {
+                    "verb"  : "GET",
+                    "name"  : "read",
+                    "stmt"  : "select * from Project where userid=:userid and projectid:=projectid",
+                },
+                {
+                    "verb"  : "GET",
+                    "name"  : "read_all",
+                    "stmt"  : "select * from Project where userid=:userid",
+                },
+                {
+                    "verb"  : "PUT"
+                    "name"  : "update",
+                    "stmt"  : "update Project set where projectid:=projectid",
+                }                              
+            ],            
+        }        
+    ]
+}

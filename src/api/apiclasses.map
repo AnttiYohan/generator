@@ -1,0 +1,81 @@
+{
+
+    "map" : 
+    {
+        "dir"   : "/",
+        "class" :
+        [
+            {
+                "name" : "Dispatcher",
+                "ext"  : "php",
+                "file" : "Dispatcher.php"
+            },
+            {
+                "name" : "Logger",
+                "file" : "Logger.php",
+                "ext"  : "php"
+            }
+        ],
+        "files" :
+        [
+            {
+                "name" : "index.php"
+            }
+        ],
+        "children" :
+        [
+            {
+                "dir"   : "controller",
+                "class" :
+                [
+                    {
+                        "name" : "Controller",
+                        "file" : "Controller.php",
+                        "ext"  : "php"
+                    },
+                    {
+                        "name" : "GetController",
+                        "file" : "GetController.php",
+                        "ext"  : "php"
+                    },
+                    {
+                        "name" : "PostController",
+                        "file" : "PostController.php",
+                        "ext"  : "php"
+                    },
+                    {
+                        "name" : "PutController",
+                        "file" : "PutController.php",
+                        "ext"  : "php"
+                    },
+                    {
+                        "name" : "DeleteController",
+                        "file" : "DeleteController.php",
+                        "ext"  : "php"
+                    }
+                ]
+            },
+            {
+                "dir"   : "model",
+                "class" :
+                [
+                    {
+                        "name" : "Model",
+                        "file" : "Model.php",
+                        "ext"  : "php"
+                    },
+                    {
+                        "name" : "UserModel",
+                        "file" : "UserModel.php",
+                        "ext"  : "php"
+                    },
+                    {
+                        "name" : "ProjectModel",
+                        "file" : "ProjectModel.php",
+                        "ext"  : "php"
+                    }                    
+                ]
+            }
+        ]
+    }
+}

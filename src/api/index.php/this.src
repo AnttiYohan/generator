@@ -1,0 +1,12 @@
+<?php
+include "Dispatcher.php";
+
+try 
+{
+    $controller = Dispatcher::controller($_SERVER['REQUEST_URI']);
+}
+catch (Exception $e)
+{
+    throw new Exception("Error: " . $e . PHP_EOL . "At " . __FILE__ . ":" . __LINE__);
+}
+echo $controller->execute();

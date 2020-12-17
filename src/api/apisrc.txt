@@ -1,0 +1,122 @@
+{
+    "class" : 
+    {
+        "name" : "API",
+        "property" : 
+        [
+            { 
+                "name"       : "conn",
+                "visibility" : "private",
+                "value"      : "NULL"
+            }    
+        ],
+        "method" :
+        [
+            {
+                "name" : "__construct",
+                "visibility" : "public",
+                "params" : 
+                [
+                    "db_setup=''"
+                ],
+                "src" : "__construct.txt"
+            },
+            {
+                "name" : "__destruct",
+                "visibility" : "public",
+                "params" : [],
+                "src" : "__destruct.txt"
+            },            
+            {
+                "name" : "open_connection",
+                "visibility" : "public",
+                "params" :
+                [
+                    "db_setup"
+                ],
+                "src" : "open_connection.txt"
+            },
+            {
+                "name" : "close_connection",
+                "visibility" : "public",
+                "params" : [],
+                "src" : "close_connection.txt"
+            },
+            {
+                "name" : "parse_author" ,
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "credentials",
+                "src" : "parse_author.txt"
+            },
+            {
+                "name" : "parse_create_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_create_params.txt"
+            },
+            {
+                "name" : "parse_read_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_read_params.txt"
+            },
+            {
+                "name" : "parse_update_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_update_params.txt"
+            },
+            {
+                "name" : "parse_delete_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_create_params.txt"
+            },
+            {
+                "name" : "create",
+                "visibility" : "public",
+                "params" : 
+                [
+                    "request"
+                ],
+                "return" : "response",
+                "src" : "create.txt"
+            },
+            {
+                "name" : "read",
+                "visibility" : "public",
+                "params" :
+                [
+                    "request"
+                ],
+                "return" : "response",
+                "src" : "read.txt"
+            },
+            {
+                "name" : "update",
+                "visibility" : "public",
+                "params" :
+                [
+                    "request"
+                ],               
+                "return" : "response",
+                "src" : "update.txt"
+            },
+            {
+                "name" : "delete",
+                "visibility" : "public",
+                "params" :
+                [
+                    "request"
+                ],
+                "return" : "response",
+                "src" : "delete.txt"
+            }         
+        ]
+    }
+}

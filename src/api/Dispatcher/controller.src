@@ -1,0 +1,12 @@
+$controller = ucfirst(strtolower($_SERVER['REQUEST_METHOD'])) . "Controller";
+
+try
+{
+    include "./controller/" . $controller . ".php"; 
+    return new $controller($uri);
+}
+catch (Exception $e)
+{
+    Logger::errlog($e, __FILE__, __LINE__);
+    throw new Exception(Logger::errstr($e, __FILE__, __LINE__));
+}

@@ -1,0 +1,8 @@
+if (is_writable(self::FILE))
+{
+    if ($f = fopen(self::FILE, 'a'))
+    {
+        fwrite($f, "Error: " . $e . " - at " . $f . ":" . $l . PHP_EOL);
+        fclose($f);
+    }
+}

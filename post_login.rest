@@ -1,0 +1,7 @@
+POST http://apigen.local/login
+Content-Type: application/json
+
+{
+    "email": "antti@prototyper.tech",
+    "password": "antti123"
+}

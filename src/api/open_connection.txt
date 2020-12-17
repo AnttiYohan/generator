@@ -1,0 +1,5 @@
+if (is_null($this->conn))
+{
+    include_once 'DBManager.php';
+    $this->conn = new DBManager($db_setup);
+}

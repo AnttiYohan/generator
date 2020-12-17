@@ -1,0 +1,4 @@
+$credentials = self::parse_author($request);
+$params = self::parse_read_params($request);
+$stmt = self::generate_select_stmt($params);
+$response = $this->conn->query($stmt, $params, $credentials);

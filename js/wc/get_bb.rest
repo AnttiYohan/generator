@@ -1,0 +1,1 @@
+GET https://braceletblaze.com/wp-json/blaze/v1/products?consumer_key=ck_936f4d6d4849180d245b94d5c09b9b3b13ed7707&consumer_secret=cs_bf4897c554689e1dd14c0c16404db672390bbcc2

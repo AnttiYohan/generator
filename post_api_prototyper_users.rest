@@ -1,0 +1,31 @@
+POST http://apigen.local/api/prototyper
+Content-Type: multipart/mixed; boundary=BOUNDARY_STRING
+
+--BOUNDARY_STRING
+Content-Type: application/json
+{
+    "api": "prototyper",
+    "table_list": 
+    [
+        {
+            "type": "ssv",
+            "name": "Users",
+            "params":
+            [
+                "username",
+                "email",
+                "password"
+            ],
+            "content":
+            [
+                "Anttij anttidroid@gmail.com mypassw",
+                "Emma emmalappalainen@gmail.com emmapass",
+                "JohnDoe johnd@gmail.com testpass",
+                "JaneDow jane@gmail.com janepass"
+            ]            
+        }
+    ]          
+}
+
+--BOUNDARY_STRING--
+

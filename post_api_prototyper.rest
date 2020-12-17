@@ -1,0 +1,266 @@
+POST http://apigen.local/api/prototyper
+Content-Type: multipart/mixed; boundary=BOUNDARY_STRING
+
+--BOUNDARY_STRING
+Content-Type: application/json
+{
+    "api": "prototyper",
+    "table_list": 
+    [
+        {
+            "type": "ssv",
+            "name": "Users",
+            "result": "user_id",
+            "params":
+            [
+                "username",
+                "email",
+                "password"
+            ],
+            "content":
+            [
+                "Anttij anttidroid@gmail.com mypassw",
+                "Emma emmalappalainen@gmail.com emmapass",
+                "JohnDoe johnd@gmail.com testpass",
+                "JaneDow jane@gmail.com janepass"
+            ]            
+        },
+        {
+            "type": "keyed",
+            "name": "Projects",
+            "result": "project_id",
+            "params":
+            [
+                {
+                    "key":  "name",
+                    "content":
+                    [
+                        "Prototyper"
+                    ]
+                },
+                {
+                    "key": "created",
+                    "content":
+                    [
+                        "2020-09-20 08:00:00"
+                    ]
+                },
+                {
+                    "key": "modified",
+                    "content":
+                    [
+                        "2020-09-20 08:00:00"
+                    ]                        
+                },
+                {
+                    "type": "refrence",
+                    "references": "email",
+                    "key": "author_id",
+                    "content":
+                    [
+                        "anttidroid@gmail.com"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "keyed",
+            "name": "Files",
+            "params":
+            [
+                {
+                    "key":  "name",
+                    "content":
+                    [
+                        "index.php",
+                        "apieditor.js"
+                    ]
+                },
+                {
+                    "key": "created",
+                    "content":
+                    [
+                        "2020-09-20 08:00:00",
+                        "2020-09-20 08:00:00"
+                    ]
+                },
+                {
+                    "key": "modified",
+                    "content":
+                    [
+                        "2020-09-20 08:00:00",
+                        "2020-09-20 08:00:00"
+                    ]                        
+                },
+                {
+                    "key": "dir_id",
+                    "content":
+                    [
+                        13,
+                        13
+                    ]
+                },
+                {
+                    "type": "filepointer",
+                    "key": "content",
+                    "content":
+                    [
+                        "index.php",
+                        "apieditor.js"
+                    ]
+                }
+            ]
+        } 
+    ]          
+}
+--BOUNDARY_STRING
+Content-Disposition: file; file="index.php"
+Content-Type: text/html
+
+<?php
+session_start();
+$_SESSION["user"] = "apiguest";
+$_SESSION["treeview-state"] = "api";
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+	<link rel="icon" href="data:;base64,iVBORxOKGO=">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <!-- script defer src="./wc/TreeView.js" type="module"></script -->
+    <!--script defer src="./wc/ToolBar.js" type="module"></script>
+    <script defer src="./wc/ToolItem.js" type="module"></script -->
+  </head>
+  <body style="background:#e8d8f8;">
+    <header>
+      <h1>APIGEN</h1>
+        <!-- tool-bar>
+          <tool-item c="#e1e1f8" bg="#212128">t1</tool-item>
+          <tool-item c="#e1e1f8" bg="#212128">t2</tool-item>
+          <tool-item c="#e1e1f8" bg="#212128">t3</tool-item>                    
+        </tool-bar -->    
+      <!--<div class="toolbar">
+        <div class="tool-item">t1</div>
+        <div class="tool-item">t2</div>
+        <tool-item c="#ff9" bg="#112">t3</tool-item>
+      </div -->
+    </header>
+    <main id="main-content">
+    </main>
+  </body>
+</html>
+<script src="./js/apieditor.js" type="module"></script>
+--BOUNDARY_STRING
+Content-Disposition: file; file="apieditor.js"
+Content-Type: text/plain
+
+import
+{
+    Api,
+    Table,
+    Field,
+    Constraint,
+    Check,
+    NotNull,
+    ForeignKey,
+    PrimaryKey,
+    AutoIncrement,
+    Type,
+    Action, 
+    Reference,
+}
+from "./dbelems/Api";
+
+import { TableView, ToolBar, ToolItem, TreeView } from "./wc/wc";
+
+import { ApigenRequest } from "./ApigenRequest";
+
+import { Store } from "./LocalStorageManager";
+
+// - Create map for API container
+var apiMap = {};
+let currentUser = {name : "testuser", id : 0};
+
+/**
+ * Build the Apigen UI
+ * 1) Setup the header with toolbar and signing 
+ * 2) Setup treeview to navigate the API's and
+ * 3) Setup tableview to edit API tables, models, data, settings amd stats
+ * 4) Setup the footer
+ * 
+ * :---------------------------------------------------------:
+ * | Toolbar                                  login/logout   |
+ * |--------------;------------------------------------------|
+ * | TreeView     |  TableView    Table 1                    |
+ * |--------------|------------------------------------------|
+ * | <- All APIs  | name   | type       | constraint         | 
+ * |--------------|------------------------------------------|
+ * | API Name | + | id       INT          AUTO_INCREMENT 1   |   
+ * |--------------|                       PRIMARY_KEY        |
+ * | Table 1    > |------------------------------------------|
+ * | ...          | name     VARCHAR  64  NOT_NULL           |
+ * | Table n      |------------------------------------------|
+ * |--------------| author   INT          NOT_NULL           |
+ * | Model 1      |------------------------------------------|
+ * | ...          | CONSTRAINTS:                             |
+ * | Model n      | FOREIGN KEY (author) REFERENCES Table2.id|
+ * |--------------|                      ON UPDATE CASCADE   |
+ * | Run          |                      ON DELETE CASCADE   |
+ * '--------------'------------------------------------------'
+ * |                                                         |
+ * | Footer                                                  |
+ * |_________________________________________________________|
+ */
+(function setupTreeview()
+{
+    //let user = Store.readUser();
+    //let list = Store.readApiList();
+    //let obj  = Store.readApi("testapi");
+
+    //for (const key in api) console.log("Apikey: " + key + " - value: " + api.key);
+
+    const header = document.querySelector("header");
+    const toolbar = new ToolBar();
+    const it1 = new ToolItem();
+    it1.textContent = "it1";
+    it1.addClickCallback(function(){console.log("it1 callback executed");});
+    toolbar.appendChild(it1); 
+    header.appendChild(toolbar);
+
+    const treeView = new TreeView(null);
+    const tableView = new TableView(null);
+
+    if (obj === null)
+    {
+        const apigen = new ApigenRequest();
+        apigen.getAllApisByAuthor(currentUser.id)
+        .then(data => {
+
+            if (data["result"] === "error")
+            {
+                console.log("No apis found with userid: " + currentUser.id);
+                treeView.openWithEmpty();
+            }
+            else
+            {
+                for (const key in data)
+                {
+                    const api = data[key];
+                    apiMap[key] = Api.createFromJson(api);
+                }
+                treeView.openWithApiMap(apiMap);
+            }
+        });
+    } else 
+    {
+        //if (api.title.length) treeView.openWithApi(api);
+    }
+
+    const m = document.getElementById("main-content");
+    m.appendChild(treeView);
+    m.appendChild(tableView);
+})();
+
+--BOUNDARY_STRING--
+

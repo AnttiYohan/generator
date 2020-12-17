@@ -1,0 +1,122 @@
+{ 
+    "class" : 
+    {
+        "name" : "API",
+        "property" : 
+        [
+            { 
+                "name" : "conn",
+                "visibility" : "private",
+                "default" : "NULL"
+            }    
+        ],
+        "method" :
+        [
+            {
+                "name" : "__construct",
+                "visibility" : "public",
+                "params" : 
+                [
+                    "db_setup=''"
+                ],
+                "content" : "if (!empty($db_setup)) $this->open_connection($db_setup);"
+            },
+            {
+                "name" : "__destruct",
+                "visibility" : "public",
+                "params" : [],
+                "content" : "$this->close_connection();"
+            },            
+            {
+                "name" : "open_connection",
+                "visibility" : "public",
+                "params" :
+                [
+                    "db_setup"
+                ],
+                "content" : "if (is_null($this->conn))\n{\n\tinclude_once 'DBManager.php';\n\t$this->conn = new DBManager($db_setup);\n}"
+            },
+            {
+                "name" : "close_connection",
+                "visibility" : "public",
+                "params" : [],
+                "content" : "if ($this->conn)\n{\n\t$this->conn->close();\n\t$this->conn = NULL;\n}"
+            },
+            {
+                "name" : "parse_author" ,
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "credentials",
+                "src" : "parse_author.txt"
+            },
+            {
+                "name" : "parse_create_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_create_params.txt"
+            },
+            {
+                "name" : "parse_read_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_read_params.txt"
+            },
+            {
+                "name" : "parse_update_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_update_params.txt"
+            },
+            {
+                "name" : "parse_delete_params",
+                "visibility" : "protected",
+                "params" : [ "response" ],
+                "return" : "param_array",
+                "src" : "parse_create_params.txt"
+            },
+            {
+                "name" : "create",
+                "visibility" : "public",
+                "params" : 
+                [
+                    "request"
+                ],
+                "return" : "response",
+                "src" : "create.txt"
+            },
+            {
+                "name" : "read",
+                "visibility" : "public",
+                "params" :
+                [
+                    "request"
+                ],
+                "return" : "response",
+                "src" : "read.txt"
+            },
+            {
+                "name" : "update",
+                "visibility" : "public",
+                "params" :
+                [
+                    "request"
+                ],               
+                "return" : "response",
+                "src" : "update.txt"
+            },
+            {
+                "name" : "delete",
+                "visibility" : "public",
+                "params" :
+                [
+                    "request"
+                ],
+                "return" : "response",
+                "src" : "delete.txt"
+            },            
+        ]
+    }
+}

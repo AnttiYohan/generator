@@ -1,0 +1,4 @@
+public static function errstr($e, $f, $l)
+{
+    return "Log error: " . $e . PHP_EOL . "At file: " . $f . ", line: " . $l;
+}
