@@ -22,8 +22,8 @@ class APIConnection
     {
         $host = "127.0.0.1";
         $cset = "utf8";
-        $user = "apigenuser";
-        $pass = "apipass";
+        $user = "-";
+        $pass = "-";
         $dsn  = "mysql:host=$host;";
         
         if( ! empty($db)) $dsn .= "dbname=$dbname";
@@ -46,9 +46,6 @@ class APIConnection
             throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
                     
-        /*echo "\n" . $dbname . " Connected to Database "
-        . $this->conn->query("SELECT database()")->fetchColumn() .
-        PHP_EOL . PHP_EOL;*/
     }
 
     // -------------------------------------------------- //
